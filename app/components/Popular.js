@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { fetchPopularRepos } from "../utils/api";
 import { FaUser, FaStar, FaCodeBranch, FaExclamationTriangle } from "react-icons/fa";
 import Card from "./Card";
+import Loading from "./Loading";
 function LanguagesNav({ selected, onUpdateLanguage }) {
   const languages = ["All", "Javascript", "Ruby", "Java", "CSS", "Phyton"];
 
@@ -119,7 +120,7 @@ export default class Popular extends React.Component {
       <React.Fragment>
         <LanguagesNav selected={selectedLanguage} onUpdateLanguage={this.updateLanguage} />
 
-        {this.isLoading() && <p>Loading</p>}
+        {this.isLoading() && <Loading text="Fetching Repos" />}
         {error && <p className="center-text error">{error}</p>}
 
         {repos[selectedLanguage] && <ReposGrid repos={repos[selectedLanguage]} />}
